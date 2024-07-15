@@ -1,0 +1,78 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h4>Player Management
+                <button (click)="openNew()" class="btn btn-primary float-end">New Player</button>
+            </h4>
+        </div>
+        <div class="card-body">
+            <p-table [value]="players" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]" [responsiveLayout]="'scroll'">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>CIN</th>
+                        <th>Team</th>
+                        <th>Score</th>
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-player>
+                    <tr>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.role }}</td>
+                        <td>{{ player.cin }}</td>
+                        <td>{{ player.team }}</td>
+                        <td>{{ player.score }}</td>
+                        <td>
+                            <button (click)="editPlayer(player)" class="btn btn-primary">Edit</button>
+                            <button (click)="deletePlayer(player.id)" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+            <p-dialog header="Player Details" [(visible)]="displayAddPlayerDialog" [modal]="true" [closeOnEscape]="true" [dismissableMask]="true">
+                <span class="pi pi-times" style="position: absolute; top: 1rem; right: 1rem; cursor: pointer;" (click)="displayAddPlayerDialog = false"></span>
+                <div *ngIf="isloading; else elseForm">
+                    <app-loader [title]="loadingtitle"></app-loader>
+                </div>
+                <ng-template #elseForm>
+                    <form (ngSubmit)="submitQuiz()">
+                        <div class="mb-3">
+                            <label for="name">Name</label>
+                            <input type="text" [(ngModel)]="name" name="name" id="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="role">Role</label>
+                            <input type="text" [(ngModel)]="role" name="role" id="role" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cin">CIN</label>
+                            <input type="text" [(ngModel)]="cin" name="cin" id="cin" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="team">Choose a team:</label>
+                            <select [(ngModel)]="team" name="team" id="team" class="form-control" required>
+                                <option value="team1">Team 1</option>
+                                <option value="team2">Team 2</option>
+                            </select>
+                        </div>
+
+                        <div id="quiz-container">
+                            <h1>Man of the Match Quiz</h1>
+                            <div class="question mb-3" *ngFor="let question of questions; let i = index">
+                                <p>{{ question.text }}</p>
+                                <div *ngFor="let option of question.options">
+                                    <input type="radio" [name]="'q' + (i + 1)" [value]="option.value" [(ngModel)]="answers[i]" required> {{ option.text }}
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">{{ selectedPlayer.id ? 'Update Player' : 'Add Player' }}</button>
+                        </div>
+                    </form>
+                </ng-template>
+            </p-dialog>
+        </div>
+    </div>
+</div>

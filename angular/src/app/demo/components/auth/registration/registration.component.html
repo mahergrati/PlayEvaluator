@@ -1,0 +1,29 @@
+<div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius: 53px;">
+    <!-- Registration form -->
+    <label for="name" class="block text-900 text-xl font-medium mb-2">Name</label>
+    <input id="name" type="text" placeholder="Your name" class="w-full md:w-30rem mb-5" style="padding: 1rem;" [(ngModel)]="name">
+
+    <label for="lastname" class="block text-900 text-xl font-medium mb-2">Last Name</label>
+    <input id="lastname" type="text" placeholder="Your last name" class="w-full md:w-30rem mb-5" style="padding: 1rem;" [(ngModel)]="lastName">
+
+    <label for="birthday" class="block text-900 text-xl font-medium mb-2">Birthday</label>
+    <input id="birthday" type="date" class="w-full md:w-30rem mb-5" style="padding: 1rem;" [(ngModel)]="birthday">
+
+    <label for="cin" class="block text-900 text-xl font-medium mb-2">CIN</label>
+    <input id="cin" type="text" placeholder="Your CIN" class="w-full md:w-30rem mb-5" style="padding: 1rem;" [(ngModel)]="cin">
+
+    <label for="phone_number" class="block text-900 text-xl font-medium mb-2">Phone Number</label>
+    <input id="phone_number" type="tel" placeholder="Your phone number" class="w-full md:w-30rem mb-5" style="padding: 1rem;" [(ngModel)]="phoneNumber">
+
+    <label for="email" class="block text-900 text-xl font-medium mb-2">Email</label>
+    <input id="email" type="email" placeholder="Your email address" class="w-full md:w-30rem mb-5" style="padding: 1rem;" [(ngModel)]="email">
+
+    <label for="password" class="block text-900 text-xl font-medium mb-2">Password</label>
+    <input id="password" type="password" placeholder="Your password" class="w-full md:w-30rem mb-5" style="padding: 1rem;" [(ngModel)]="password">
+
+    <label for="role" class="block text-900 text-xl font-medium mb-2">Role</label>
+    <input id="role" type="text" placeholder="Your role" class="w-full md:w-30rem mb-5" style="padding: 1rem;" [(ngModel)]="role">
+
+    <!-- Registration button -->
+    <button pButton pRipple label="Submit" class="w-full p-3 text-xl" style="background-color: var(--primary-color); color: white;" (click)="submitRegistration()"></button>
+</div>
